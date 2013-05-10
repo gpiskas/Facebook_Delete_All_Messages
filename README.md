@@ -1,4 +1,7 @@
-Facebook_Delete_All_Messages
+Facebook - Delete All Messages
 =============================
 
-Adds a 'Delete All' button to Facebook Messages window that deletes all listed conversations.
+A Firefox extension. 
+https://addons.mozilla.org/en-US/firefox/addon/facebook-delete-all-message/
+
+Adds a 'Delete All' button to Facebook Messages window that deletes all listed conversations. 

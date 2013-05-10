@@ -1,0 +1,9 @@
+{
+  "name": "fb-del-msg",
+  "fullName": "Facebook - Delete All Messages",
+  "id": "jid1-CGrc5dzo0BPqQw",
+  "description": "Adds a 'Delete All' button to Facebook Messages window!",
+  "author": "Geo Piskas",
+  "license": "MPL 2.0",
+  "version": "1.0"
+}
