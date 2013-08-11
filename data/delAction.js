@@ -111,52 +111,45 @@ function getLocalizedText(lang) {
     return 'Delete Conversation'
 }
 
-function createButton() {
-    var span = document.createElement('span');
-    span.setAttribute('class', 'uiButtonGroupItem buttonItem');
-    
-    var a = document.createElement('a');
-    a.setAttribute('class', 'uiButton uiButtonOverlay uiButtonNoText');
-    a.setAttribute('role', 'button');
-    a.setAttribute('aria-label', 'Delete all listed conversations');
-    a.setAttribute('data-hover', 'tooltip');
-    a.onclick = function(){
-        if (confirm("Are you sure you wish to proceed?")) {
-            var lang = document.getElementsByClassName('rhcFooterWrap')[0].getElementsByTagName('a')[0].innerHTML;
+function deleteAll() {
+    if (confirm("Are you sure you wish to proceed?")) {
+        var lang = document.getElementsByClassName('rhcFooterWrap')[0].getElementsByTagName('a')[0].innerHTML;
 
-            var index = -1;
-            var delText = getLocalizedText(lang);
-            var buttons = document.getElementsByClassName('uiMenu uiSelectorMenu')[0].getElementsByTagName('a');
-            for(var i=0;i<buttons.length;i++) {
-                if(buttons[i].innerHTML.contains(delText)) {
-                    index = i;
-                    break;
-                }
+        var index = -1;
+        var delText = getLocalizedText(lang);
+        var buttons = document.getElementsByClassName('uiMenu uiSelectorMenu')[0].getElementsByTagName('a');
+        for(var i=0;i<buttons.length;i++) {
+            if(buttons[i].innerHTML.contains(delText)) {
+                index = i;
+                break;
             }
+        }
 
-            if(index==-1) {
-                alert('Problem detected! Please contact the developer and provide the following information: ('+lang+' '+index+')'); 
-                return;
-            }
+        if(index==-1) {
+            alert('Problem detected! Please contact the developer (geopiskas@gmail.com) and provide the following information: ('+lang+' '+index+')'); 
+            return;
+        }
 
-            var convList = document.getElementById('wmMasterViewThreadlist').getElementsByClassName('_k_');
-            while (convList.length!=0) {
-                convList[0].click();
-                document.getElementsByClassName('uiSelectorButton')[0].click();
-                document.getElementsByClassName('uiMenu uiSelectorMenu')[0].getElementsByTagName('a')[index].click();
-                document.getElementsByName('delete_conversation')[0].click();
+        var convList = document.getElementById('wmMasterViewThreadlist').getElementsByClassName('_k_');
+        
+        function deleteConv(){
+            timer = setTimeout(deleteConv, 0);
+            convList[0].click();
+            document.getElementsByClassName('uiSelectorButton')[0].click();
+            document.getElementsByClassName('uiMenu uiSelectorMenu')[0].getElementsByTagName('a')[index].click();
+            document.getElementsByName('delete_conversation')[0].click();
+            if(convList.length==0) {
+                clearInterval(timer);
+                alert('The listed conversations have been deleted!\nIf not, contact the developer (geopiskas@gmail.com) and provide the following information: ('+lang+' '+index+')'); 
             }
-            alert('The listed conversations have been deleted!\nIf not, contact the developer and provide the following information: ('+lang+' '+index+')'); 
+        }
+
+        if(convList.length==0) {
+            alert('No conversation to delete! Your list is already empty.\nIn case it is not empty and this alert appeared, please contact the developer (geopiskas@gmail.com) and provide the following information: ('+lang+' '+index+')'); 
+        } else {
+            timer = setTimeout(deleteConv, 0);
         }
     }
-    
-    var innerspan = document.createElement('span');
-    innerspan.setAttribute('class', 'uiButtonText');
-    innerspan.innerHTML = "Delete All";
-    
-    a.appendChild(innerspan);
-    span.appendChild(a);
-    return span;
 }
 
-document.getElementsByClassName('uiButtonGroup uiButtonGroupOverlay')[0].appendChild(createButton());
+deleteAll();
