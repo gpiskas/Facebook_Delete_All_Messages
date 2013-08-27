@@ -9,3 +9,6 @@ Adds a 'Facebook - Delete All Messages' option to Firefox->Tools menu that delet
 
 Chrome: https://chrome.google.com/webstore/detail/facebook-delete-all-messa/hgiidlnejdlfoacoeleopkljhbckmlko
 Adds a 'Facebook - Delete All Messages' page action that, when clicked, deletes all listed conversations.
+
+Facebook - Delete All Messages
+Copyright (C) 2013  George Piskas
